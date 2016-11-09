@@ -8,6 +8,10 @@ import styles from './styles';
 
 @injectCss(styles)
 class ClassComponent extends React.Component {
+  static propTypes = {
+    selectors: React.PropTypes.object
+  };
+
   render() {
     const {
       selectors
@@ -28,6 +32,10 @@ const FunctionalComponent = injectCss(styles)(({selectors}) => {
     </div>
   );
 });
+
+FunctionalComponent.propTypes = {
+  selectors: React.PropTypes.object
+};
 
 const App = () => {
   return (
