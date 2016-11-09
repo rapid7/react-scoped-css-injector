@@ -94,20 +94,20 @@ This object is the same value that is saved to the file specified at your `targe
 Now that you have your styles compiled, you can apply them to your React component with a simple decorator:
 
 ```javascript
-import addCss from 'react-scoped-css-injector';
+import injectCss from 'react-scoped-css-injector';
 
 import styles from 'wherever/you/saved/your/styles.js';
 
 // you can use it on class components
 
-@addCss(styles)
+@injectCss(styles)
 class MyComponent extends React.Component {
   ...
 }
 
 // or to functional components
 
-const MyComponent = addCss(styles)(() => {
+const MyComponent = injectCss(styles)(() => {
   ...
 });
 ```
@@ -117,7 +117,7 @@ This will inject a `style` tag into the head of the `document` for that componen
 To make use of the styles, the map from selectors to their hashed values is passed down as the `selectors` prop into the decorated component. You can then apply it as a className:
 
 ```javascript
-@addCss(styles)
+@injectCss(styles)
 class MyComponent extends React.Component {
   render() {
     const {
