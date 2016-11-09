@@ -38,6 +38,14 @@ const transformStyles = ({
   source,
   target
 }) => {
+  if (!source) {
+    throw new Error('source file location was not provided');
+  }
+
+  if (!target) {
+    throw new Error('target file location was not provided');
+  }
+
   const sourceFileExtension = source.split('.').slice(-1)[0];
 
   let renderedFile;

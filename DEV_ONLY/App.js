@@ -6,8 +6,6 @@ import {
 import injectCss from '../src';
 import styles from './styles';
 
-console.log(styles);
-
 @injectCss(styles)
 class ClassComponent extends React.Component {
   render() {
