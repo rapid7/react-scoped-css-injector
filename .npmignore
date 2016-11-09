@@ -1,0 +1,10 @@
+/.idea
+/.git
+/dist
+/src
+.bootstraprc
+.editorconfig
+.eslintrc
+.gitignore
+.node-version
+.nvmrc

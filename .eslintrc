@@ -1,0 +1,39 @@
+{
+  "env":{
+    "amd": true,
+    "browser": true,
+    "es6": true
+  },
+  "extends":"rapid7/browser",
+  "globals": {
+    "__dirname": true,
+    "Buffer": true,
+    "module": true,
+    "process": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures":{
+      "arrowFunctions": true,
+      "blockBindings": true,
+      "classes": true,
+      "defaultParams": true,
+      "experimentalObjectRestSpread": true,
+      "forOf": true,
+      "generators": true,
+      "globalReturn": true,
+      "jsx": true,
+      "modules": true,
+      "regexUFlag": true,
+      "regexYFlag": true,
+      "restParams": true,
+      "spread": true,
+      "superInFunctions": true,
+      "templateStrings": true,
+      "unicodeCodePointEscapes": true
+    },
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules":{}
+}

@@ -1,0 +1,15 @@
+.foo {
+  color: red;
+
+  &:before {
+    content: 'I AM BEFORE';
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+
+.bar {
+  color: blue;
+}
