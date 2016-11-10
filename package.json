@@ -22,11 +22,16 @@
     "url": "https://github.com/rapid7/react-scoped-css-injector/issues"
   },
   "dependencies": {
+    "autoprefixer": "^6.5.2",
+    "css-modules-loader-core": "^1.0.1",
+    "cssnano": "^3.8.0",
+    "node-sass": "^3.11.2",
+    "node-uuid": "^1.4.7",
+    "postcss": "^5.2.5",
     "react": "^15.3.2"
   },
   "description": "Pre-compile and inject scoped css for styling react components",
   "devDependencies": {
-    "autoprefixer": "^6.5.2",
     "ava": "^0.16.0",
     "babel": "^6.5.2",
     "babel-cli": "^6.18.0",
@@ -37,8 +42,7 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.18.0",
-    "css-modules-loader-core": "^1.0.1",
-    "enzyme": "^2.5.1",
+    "enzyme": "^2.6.0",
     "eslint": "^3.9.1",
     "eslint-config-rapid7": "^2.6.0",
     "eslint-friendly-formatter": "^2.0.6",
@@ -48,12 +52,8 @@
     "in-publish": "^2.0.0",
     "jsdom": "^9.8.3",
     "jsdom-global": "^2.1.0",
-    "node-sass": "^3.11.2",
-    "node-uuid": "^1.4.7",
     "onchange": "^3.0.2",
     "optimize-js-plugin": "0.0.4",
-    "postcss": "^5.2.5",
-    "postcss-camel-case": "^1.0.0",
     "react-addons-test-utils": "^15.3.2",
     "react-dom": "^15.3.2",
     "rimraf": "^2.5.4",
@@ -90,5 +90,5 @@
     "transform:watch": "onchange 'DEV_ONLY/styles.scss' -i -- npm run build",
     "transpile": "NODE_ENV=production babel src --out-dir lib"
   },
-  "version": "1.0.2"
+  "version": "1.1.0"
 }

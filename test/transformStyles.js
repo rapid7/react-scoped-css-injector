@@ -27,7 +27,7 @@ test.serial('if transformStyles will convert the styles to an object correctly w
   });
 
   t.deepEqual(result, {
-    css: `._${hash}__${selector} {${cssString}}`,
+    css: `._${hash}__${selector}{display:block}`,
     id: `${hash}_Scoped_Styles`,
     selectors: {
       foo: `_${hash}__${selector}`
@@ -55,7 +55,7 @@ test.serial('if transformStyles will convert the styles to an object correctly w
   });
 
   t.deepEqual(result, {
-    css: `._${hash}__${selector} {${cssString}}`,
+    css: `._${hash}__${selector}{display:block}`,
     id: `${hash}_Scoped_Styles`,
     selectors: {
       foo: `_${hash}__${selector}`
