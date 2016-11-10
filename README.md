@@ -137,7 +137,6 @@ The usage of this should be very familiar if you have used CSS Modules, as it fo
 
 #### Development
 
-
 Standard stuff, clone the repo and `npm i` to get the dependencies. npm scripts available:
 * `build` => runs webpack to build the compiled JS file with `NODE_ENV` set to `development`
 * `build:minified` => runs webpack to build the compiled and optimized JS file with `NODE_ENV` set to `production`
