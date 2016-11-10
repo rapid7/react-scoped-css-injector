@@ -56,7 +56,7 @@ const transformStyles = ({
       file: source,
       importer(url) {
         if (url[0] === '~') {
-          url = path.resolve(__dirname, 'node_modules', url.substring(1));
+          url = path.resolve(path.dirname(require.main.filename), 'node_modules', url.substring(1));
         }
 
         return {
