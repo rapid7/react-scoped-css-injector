@@ -6,7 +6,7 @@ import React, {
 // utils
 import {
   injectStyleTag
-} from '../src/utils';
+} from './utils';
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
