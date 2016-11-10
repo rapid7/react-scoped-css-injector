@@ -4,24 +4,19 @@ const fs = require('fs');
 const path = require('path');
 
 const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 const postcss = require('postcss');
 const sass = require('node-sass');
 const uuid = require('node-uuid');
 
 const Core = require('css-modules-loader-core');
-const camelCase = require('postcss-camel-case');
+const camelCaser = require('./transform/camelCaser').default;
 
 const core = new Core([
   Core.localByDefault,
   Core.extractImports,
-  camelCase,
+  camelCaser,
   Core.scope
-]);
-
-const prefixer = postcss([
-  autoprefixer({
-    remove: false
-  })
 ]);
 
 /**
@@ -71,41 +66,48 @@ const transformStyles = ({
 
   // convert the Buffer to a string and prefix via postcss
   const string = renderedFile.toString('utf8');
-  const prefixedString = prefixer.process(string).css;
 
-  // load the prefixed CSS and convert via CSS Modules, then create a file with all metadata provided
-  return core.load(prefixedString, hash)
-    .then(({exportTokens, injectableSource}) => {
-      let css = injectableSource.replace(/\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g, '');
+  let prefixerPlugins = [
+    autoprefixer({
+      remove: false
+    })
+  ];
 
-      if (minify) {
-        css = css
-          .replace(/ {2,}/g, ' ')
-          .replace(/ ([{:}]) /g, '$1')
-          .replace(/([;,]) /g, '$1')
-          .replace(/ !/g, '!');
-      }
+  if (minify) {
+    prefixerPlugins = [
+      ...prefixerPlugins,
+      cssnano
+    ];
+  }
 
-      // provide the compiled CSS, the id to use in the style tag, and the selector map
-      const fileValue = {
-        css,
-        id: `${hash}_Scoped_Styles`,
-        selectors: exportTokens
-      };
+  const prefixer = postcss(prefixerPlugins);
 
-      // clean the string to mean the rapid7 ESLint config rules
-      const bufferString = JSON.stringify(fileValue)
-        .replace(/'/g, '\\\'')
-        .replace(/"/g, '\'')
-        .replace(/,/g, ', ');
+  return prefixer.process(string)
+    .then(({css}) => {
+      // load the prefixed CSS and convert via CSS Modules, then create a file with all metadata provided
+      return core.load(css, hash)
+        .then(({exportTokens, injectableSource}) => {
+          // provide the compiled CSS, the id to use in the style tag, and the selector map
+          const fileValue = {
+            css: injectableSource,
+            id: `${hash}_Scoped_Styles`,
+            selectors: exportTokens
+          };
 
-      // make a Buffer of an exportable file
-      const buffer = new Buffer(`module.exports = ${bufferString};\n`);
+          // clean the string to mean the rapid7 ESLint config rules
+          const bufferString = JSON.stringify(fileValue)
+            .replace(/'/g, '\\\'')
+            .replace(/"/g, '\'')
+            .replace(/,/g, ', ');
 
-      // write the file to the target
-      fs.writeFileSync(target, buffer);
+          // make a Buffer of an exportable file
+          const buffer = new Buffer(`module.exports = ${bufferString};\n`);
 
-      return fileValue;
+          // write the file to the target
+          fs.writeFileSync(target, buffer);
+
+          return fileValue;
+        });
     });
 };
 
