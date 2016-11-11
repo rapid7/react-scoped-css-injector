@@ -136,6 +136,8 @@ const getRenderedCss = (source, renderOptions) => {
       default:
         // otherwise, assume the file is plain CSS and read the file as a Buffer
         resolve(fs.readFileSync(source, 'utf8'));
+
+        break;
     }
   };
 };
@@ -162,13 +164,13 @@ const getPrefixedCss = (hash, target, minify) => {
     if (minify) {
       prefixerPlugins = [
         ...prefixerPlugins,
-        cssnano
+        cssnano({
+          safe: true
+        })
       ];
     }
 
-    const prefixer = postcss(prefixerPlugins);
-
-    return prefixer.process(string)
+    return postcss(prefixerPlugins).process(string)
       .catch((error) => {
         /* eslint-disable no-console */
         console.error('There was an error prefixing your css.');
