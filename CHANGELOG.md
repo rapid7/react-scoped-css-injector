@@ -1,5 +1,13 @@
 # react-scoped-css-injector CHANGELOG
 
+#### 1.2.1
+* Remove unsafe optimizations in cssnano
+
+#### 1.2.0
+* Add less supports
+* Add ability to provide options to `transformStyles`
+* Move transformation methods to transform subfolder for testability
+
 #### 1.1.0
 * Replace postcss-camel-case plugin with local plugin (was transforming pseudo-selectors)
 * Use cssnano for minification
