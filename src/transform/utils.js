@@ -25,6 +25,10 @@ const core = new Core([
  * @returns {string}
  */
 const resolveUrlPath = (url) => {
+  if (url[0] !== '~') {
+    return url;
+  }
+
   return path.resolve(path.dirname(require.main.filename), 'node_modules', url.slice(1));
 };
 
@@ -95,12 +99,8 @@ const getRenderedCss = (source, renderOptions) => {
         const scssOptions = Object.assign({}, renderOptions, {
           file: source,
           importer(url) {
-            if (url[0] === '~') {
-              url = resolveUrlPath(url);
-            }
-
             return {
-              file: url
+              file: resolveUrlPath(url)
             };
           }
         });
