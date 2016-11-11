@@ -9,7 +9,7 @@
       "!test/helpers/**"
     ],
     "source": [
-      "src/*.js"
+      "src/**/*.js"
     ],
     "require": [
       "babel-register",
@@ -93,5 +93,5 @@
     "transform:watch": "onchange 'DEV_ONLY/styles.scss' -i -- npm run build",
     "transpile": "NODE_ENV=production babel src --out-dir lib"
   },
-  "version": "1.2.0"
+  "version": "1.2.1"
 }
