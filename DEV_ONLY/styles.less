@@ -1,0 +1,27 @@
+@import '~bootstrap/less/variables.less';
+
+.foo {
+  color: @brand-danger;
+
+  &:before {
+    content: 'I AM BEFORE';
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  &:first-of-type {
+    display: block;
+  }
+}
+
+.bar {
+  color: blue;
+}
+
+@media screen and (max-width: 1000px) {
+  .foo {
+    color: green;
+  }
+}

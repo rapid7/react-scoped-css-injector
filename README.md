@@ -74,6 +74,7 @@ As such, I created this solution. To be clear, this package is targeted for peop
 {
   hash: String, // optional, defaults to a random uuid
   minify: Boolean, // optional, defaults to true
+  renderOptions: Object, // optional, defaults to {}
   source: String, // required
   target: String // required
 }
@@ -115,6 +116,12 @@ const MyComponent = injectCss(styles)(() => {
 This will inject a `style` tag into the head of the `document` for that component, allowing the CSS to be available for use by the component. Don't worry, in the case of multiple instances of the same component, only a single tag is added.
 
 To make use of the styles, the map from selectors to their hashed values is passed down as the `selectors` prop into the decorated component. You can then apply it as a className:
+
+#### What file types do you support?
+
+* [.scss](http://sass-lang.com/)
+* [.less](http://lesscss.org/#)
+* .css (`renderOptions` is not available, as there is no rendering done)
 
 ```javascript
 @injectCss(styles)
