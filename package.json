@@ -28,9 +28,9 @@
     "less": "^2.7.1",
     "less-plugin-npm-import": "^2.1.0",
     "node-sass": "^3.11.2",
-    "node-uuid": "^1.4.7",
     "postcss": "^5.2.5",
-    "react": "^15.3.2"
+    "react": "^15.3.2",
+    "uuid": "^3.0.0"
   },
   "description": "Pre-compile and inject scoped css for styling react components",
   "devDependencies": {
